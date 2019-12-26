@@ -1,11 +1,14 @@
 {
   "name": "type-gverify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "typescript Verification code plug-in",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chunyu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "user": "0.0.0"
+  }
 }

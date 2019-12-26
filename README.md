@@ -8,6 +8,8 @@ typescript 实现验证码插件
 
 - `npm i type-gverify`
 
+- `yarn add type-gverify`
+
 ## 快速使用
 ```
 import GVerify from 'type-gverify';
@@ -16,7 +18,7 @@ verifyCode = new GVerify({
     id: 'v_container',
 });
 
-if ((verifyCode).validate('')) {
+if ((verifyCode).validate(输入的验证码)) {
     console.log('验证通过');
 }
 
@@ -59,3 +61,6 @@ html:
     </tr>
   </tbody>
 </table>
+
+## demo
+https://github.com/yinMrsir/typescript-admin
