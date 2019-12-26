@@ -1,0 +1,11 @@
+{
+  "name": "type-gverify",
+  "version": "1.0.0",
+  "description": "typescript Verification code plug-in",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chunyu",
+  "license": "ISC"
+}
