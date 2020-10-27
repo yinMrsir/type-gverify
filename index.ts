@@ -82,16 +82,16 @@ export default class GVerify {
   private refresh() {
     this.options.code = '';
     const canvas = document.getElementById(this.options.canvasId);
-    let ctx;
+    let ctx: CanvasRenderingContext2D | undefined = undefined;
     if ((canvas as HTMLCanvasElement).getContext) {
       ctx = (canvas as HTMLCanvasElement).getContext('2d');
     } else {
       return;
     }
 
-    (ctx as CanvasRenderingContext2D).textBaseline = 'middle';
-    (ctx as CanvasRenderingContext2D).fillStyle = this.randomColor(180, 240);
-    (ctx as CanvasRenderingContext2D).fillRect(0, 0, Number(this.options.width), Number(this.options.height));
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = this.randomColor(180, 240);
+    ctx.fillRect(0, 0, Number(this.options.width), Number(this.options.height));
 
     let txtArr: string[] = [];
     if (this.options.type === 'blend') {
@@ -105,48 +105,48 @@ export default class GVerify {
     for (let i = 1; i <= this.options.size; i++) {
       const txt = txtArr[this.randomNum(0, txtArr.length)];
       this.options.code += txt;
-      (ctx as CanvasRenderingContext2D).font = this.randomNum(
+      ctx.font = this.randomNum(
         Number(this.options.height),
         Number(this.options.height)) + 'px SimHei'; // 随机生成字体大小
       // ctx.font = randomNum(this.options.height/2, this.options.height) + 'px SimHei'; //随机生成字体大小
-      (ctx as CanvasRenderingContext2D).fillStyle = this.randomColor(50, 160); // 随机生成字体颜色
-      (ctx as CanvasRenderingContext2D).shadowOffsetX = this.randomNum(-3, 3);
-      (ctx as CanvasRenderingContext2D).shadowOffsetY = this.randomNum(-3, 3);
-      (ctx as CanvasRenderingContext2D).shadowBlur = this.randomNum(-3, 3);
-      (ctx as CanvasRenderingContext2D).shadowColor = 'rgba(0, 0, 0, 0.3)';
+      ctx.fillStyle = this.randomColor(50, 160); // 随机生成字体颜色
+      ctx.shadowOffsetX = this.randomNum(-3, 3);
+      ctx.shadowOffsetY = this.randomNum(-3, 3);
+      ctx.shadowBlur = this.randomNum(-3, 3);
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
       const x = Number(this.options.width) / (this.options.size + 1) * i;
       const y = Number(this.options.height) / 2;
       const deg = this.randomNum(-30, 30);
       /* 设置旋转角度和坐标原点**/
-      (ctx as CanvasRenderingContext2D).translate(x, y);
-      (ctx as CanvasRenderingContext2D).rotate(deg * Math.PI / 180);
-      (ctx as CanvasRenderingContext2D).fillText(txt, 0, 0);
+      ctx.translate(x, y);
+      ctx.rotate(deg * Math.PI / 180);
+      ctx.fillText(txt, 0, 0);
       /* 恢复旋转角度和坐标原点**/
-      (ctx as CanvasRenderingContext2D).rotate(-deg * Math.PI / 180);
-      (ctx as CanvasRenderingContext2D).translate(-x, -y);
+      ctx.rotate(-deg * Math.PI / 180);
+      ctx.translate(-x, -y);
     }
     /* 绘制干扰线**/
     for (let i = 0; i < 4; i++) {
-      (ctx as CanvasRenderingContext2D).strokeStyle = this.randomColor(40, 180);
-      (ctx as CanvasRenderingContext2D).beginPath();
-      (ctx as CanvasRenderingContext2D)
+      ctx.strokeStyle = this.randomColor(40, 180);
+      ctx.beginPath();
+      ctx
         .moveTo(this.randomNum(0, Number(this.options.width)), this.randomNum(0, Number(this.options.height)));
-      (ctx as CanvasRenderingContext2D)
+      ctx
         .lineTo(this.randomNum(0, Number(this.options.width)), this.randomNum(0, Number(this.options.height)));
-      (ctx as CanvasRenderingContext2D).stroke();
+      ctx.stroke();
     }
     /* 绘制干扰点**/
     for (let i = 0; i < Number(this.options.width) / 4; i++) {
-      (ctx as CanvasRenderingContext2D).fillStyle = this.randomColor(0, 255);
-      (ctx as CanvasRenderingContext2D).beginPath();
-      (ctx as CanvasRenderingContext2D)
+      ctx.fillStyle = this.randomColor(0, 255);
+      ctx.beginPath();
+      ctx
         .arc(
           this.randomNum(0, Number(this.options.width)),
           this.randomNum(0, Number(this.options.height)),
           1,
           0,
           2 * Math.PI);
-      (ctx as CanvasRenderingContext2D).fill();
+      ctx.fill();
     }
   }
 
