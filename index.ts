@@ -84,8 +84,12 @@ export default class GVerify {
     const canvas = document.getElementById(this.options.canvasId);
     let ctx: CanvasRenderingContext2D | undefined = undefined;
     if ((canvas as HTMLCanvasElement).getContext) {
-      ctx = (canvas as HTMLCanvasElement).getContext('2d');
+      ctx = (canvas as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
     } else {
+      return;
+    }
+
+    if (!ctx) {
       return;
     }
 
