@@ -1,6 +1,6 @@
 {
   "name": "type-gverify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "typescript Verification code plug-in",
   "main": "index.ts",
   "scripts": {
